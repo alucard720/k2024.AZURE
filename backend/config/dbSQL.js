@@ -151,7 +151,7 @@ async function createUser (email, password){
   }
 
   //ADD USER
-async function addUser(email, passworddd){
+async function addUser(email, password){
   try {
     const pool = await sql.connect(config)
     const result = await pool.request()
