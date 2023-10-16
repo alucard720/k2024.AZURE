@@ -2,7 +2,8 @@ const sql = require('mssql');
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
+const { emit } = require('nodemon');
 dotenv.config()
  
 const config = {
@@ -53,7 +54,9 @@ connectAndQuery();
 async function connectAndQuery() {
     try {
       await sql.connect(config);
-        // close connection only when we're certain application is finis
+        // close connection only when we're certain application is finish
+
+        sql.close()
     } catch (err) {
         console.error(err.message);
     }
@@ -73,6 +76,8 @@ async function getAllusers(){
     }
 } */
 
+
+//GET ALL USERS
 const getAllusers = async ()=>{
     try {
 
@@ -87,6 +92,8 @@ const getAllusers = async ()=>{
 
 
 
+
+// CREATE USER
 //hash
 async function hashPassword(password) {
     const saltRounds = 10;
@@ -142,6 +149,48 @@ async function createUser (email, password){
         return null;
     }
   }
+
+  //ADD USER
+async function addUser(email, passworddd){
+  try {
+    const pool = await sql.connect(config)
+    const result = await pool.request()
+    pool.input('email', sql.NVarChar(60),email);
+    pool.input('password', sql.NVarChar(60), password);    
+    await pool.query(`INSERT INTO users(email,password) VALUES('${email}', '${password}')`) 
+    console.log(result);
+  } catch (error) {
+    throw error;
+  }
+}
+
+//UPDATE USERS
+
+async function updateUsers(userId,newEmail, newPassword){
+ try {
+  const pool = await sql.connect(config)
+  const result =await pool.request()
+  pool.input('id', sql.Int, userId);
+  pool.input('email', sql.NVarChar(60), newEmail);
+  pool.input ('password', sql.NVarChar(60), newPassword)
+  await pool.query('UPDATE user SET email=@email, password=@password WHERE id=@id');
+ } catch (error) {
+  throw error;
+ }
+}
+
+//DELETE USER
+
+async function deleteUser(userId){
+  try {
+    const pool = await sql.connect(config)
+    const result =await pool.request()
+    pool.input('id', sql.Int, userId);
+    await pool.query('DELETE FROM users WHERE id = @id');
+      } catch (error) {
+    throw error;
+  }
+}
   
 ///===AUTHENTICATION FUNCIATIONS
 /* const match = async function correctPassword(candidatePassword, userPassword) {
@@ -168,4 +217,4 @@ async function createUser (email, password){
     }
   };
 
-module.exports={connectAndQuery, getAllusers, createUser, Login}
+module.exports={connectAndQuery, getAllusers, createUser, Login, addUser, deleteUser, updateUsers}

@@ -48,6 +48,21 @@ app.post("/login", async(req, res)=>{
     res.status(401).json({message:"Invalid email or password"})
   }
 })
+//register
+
+app.post('/register', async(req, res)=>{
+  const {email, password}= req.body;
+
+  const success = await db.createUser(email, password);
+  if(success){
+    res.status(201).json({message:"User registerd success"})
+  }else{
+    res.status(500).json({message:"not registered"})
+  }
+
+})
+
+
 // start the server
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
