@@ -24,7 +24,7 @@ function DashboardCard10() {
                   <div className="font-semibold text-left">Email</div>
                 </th>
                 <th className="p-2 whitespace-nowrap">
-                  <div className="font-semibold text-center">Lugar </div>
+                  <div className="font-semibold text-center">Contrasena</div>
                 </th>
              {/*    <th className="p-2 whitespace-nowrap">
                   <div className="font-semibold text-left">Spent</div>

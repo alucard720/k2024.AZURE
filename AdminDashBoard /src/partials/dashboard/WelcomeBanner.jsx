@@ -1,6 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function WelcomeBanner() {
+
+  const [timeOfDay, setTimeOfDay]= useState('');
+
+  useEffect(()=>{
+    const currenTime = new Date().getHours();
+
+    if(currenTime >= 5 && currenTime < 12){
+      setTimeOfDay('Buenos Dias')
+    }else if(currenTime >= 12 && currenTime < 17){
+      setTimeOfDay('Buenas Tardes')
+    }else{
+      setTimeOfDay('Buenas Noches')
+    }
+  },[])
   return (
     <div className="relative bg-indigo-200 dark:bg-indigo-500 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
       {/* Background illustration */}
@@ -47,7 +61,7 @@ function WelcomeBanner() {
 
       {/* Content */}
       <div className="relative">
-        <h1 className="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold mb-1">Good afternoon, Acme Inc. 👋</h1>
+        <h1 className="text-2xl md:text-3xl text-slate-800 dark:text-slate-100 font-bold mb-1">{timeOfDay}, Acme Inc. 👋</h1>
         <p className="dark:text-indigo-200">Here is what’s happening with your projects today:</p>
       </div>
     </div>
