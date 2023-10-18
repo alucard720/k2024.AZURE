@@ -27,8 +27,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Dashboard />} />
-         <Route path='/login' element={<Login/>}/>
+        <Route exact path='/' element={<Login />} />
+         <Route path='/Dashboard' element={<Dashboard/>}/>
          <Route path='/register' element={<Register/>}/>
       </Routes>
     </>

@@ -22,7 +22,7 @@ const Login = () => {
         console.log(result);
 
         if(result){
-            navigate('/')
+            navigate('/Dashboard')
         }else{
             console.warn("enter corrct details")
         }
@@ -34,14 +34,15 @@ const Login = () => {
     
   return (
     <div className="auth-wrapper">
+        <div className="auth-bg">
+                <span className="r"></span>
+                <span className="r s"></span>
+                <span className="r s"></span>
+                <span className="r"></span>
+            </div> 
     <div className='auth-content'>
 
-  {/*   <div className="auth-bg">
-                <span className="r"></span>
-                <span className="r s"></span>
-                <span className="r s"></span>
-                <span className="r"></span>
-            </div> */}
+
             
             <div className="card">
                 <div className="card-body text-center">
