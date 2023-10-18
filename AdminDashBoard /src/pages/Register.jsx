@@ -1,13 +1,18 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
-const CollectData = () => {
+
+
+const CollectData = ({}) => {
+    //modal state//
+    //register state//
     const [username, setUsername]= useState([])
     const [email, setEmail] = useState('')
     const [password, setPassword]= useState('')
     const navigate = useNavigate();
+
     
 
     const handleRegister = async ()=>{
@@ -23,7 +28,7 @@ const CollectData = () => {
         console.log(result);
 
         if(result){
-            navigate('/')
+            navigate('/login')
         }else{
             console.warn("enter corrct details")
         }
@@ -34,16 +39,16 @@ const CollectData = () => {
     }
     
   return (
-    <div className="auth-wrapper">
-    <div className='auth-content'>
 
-  {/*   <div className="auth-bg">
+    
+    <div className="auth-wrapper">
+    {/*   <div className="auth-bg">
                 <span className="r"></span>
                 <span className="r s"></span>
                 <span className="r s"></span>
                 <span className="r"></span>
-            </div> */}
-            
+            </div>  */}
+    <div className='auth-content'>            
             <div className="card">
                 <div className="card-body text-center">
                     <div className="mb-4">
@@ -72,13 +77,13 @@ const CollectData = () => {
                         <div className="checkbox checkbox-fill d-inline">
                         </div>
                     </div>
-                    <button className="btn btn-primary shadow-2 mb-4" onClick={handleRegister}>Registrarse</button>
+                    <button className="btn btn-primary shadow-2 mb-4" onClick={handleRegister} >Registrarse</button>
              </div>
             </div>
 
     </div>    
     </div>
-  )
+ )
 }
 
 export default CollectData;

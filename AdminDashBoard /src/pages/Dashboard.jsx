@@ -5,11 +5,13 @@ import Sidebar from '../partials/Sidebar';
 import Header from '../partials/Header';
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import DashboardCard10 from '../partials/dashboard/DashboardCard10';
+import ModalRegister  from '../pages/Register'
 
 
 function Dashboard() {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [openmodal, setOpenModal] = useState(false)
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -42,12 +44,19 @@ function Dashboard() {
  */}                {/* Datepicker built with flatpickr */}
 {/*                 <Datepicker />
  */}                {/* Add view button */}
-                 <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
+                 <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white"
+                 
+                 >
                     <svg className="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
                         <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
                     </svg>
+                    <NavLink end to="/register" className="block">
+
                     <span className="hidden xs:block ml-2">Add Users</span>
-                </button>               
+                    </NavLink>
+                </button> 
+               
+
               </div>
 
             </div>
